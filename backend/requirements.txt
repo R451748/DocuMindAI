@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+faiss-cpu==1.7.4
+pypdf2
+groq
+python-dotenv
+numpy<2.0.0
+scikit-learn
