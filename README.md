@@ -36,6 +36,7 @@
 
 👉 Upload PDF → Ask Question → Get Answer
 
+![Upload](screenshots/upload.png)
 
 
 ---
@@ -52,7 +53,7 @@ docker compose up --build
 
 ## 🌐 Live Demo
 
-👉 https://your-frontend-url.onrender.com
+👉 https://pdf-frontend-6i8y.onrender.com
 
 ---
 
