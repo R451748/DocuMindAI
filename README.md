@@ -53,7 +53,7 @@ docker compose up --build
 
 ## 🌐 Live Demo
 
-👉 https://pdf-frontend-6i8y.onrender.com
+👉https://pdf-chat-d2zmesenqswbizmdpberv9.streamlit.app/
 
 ---
 
