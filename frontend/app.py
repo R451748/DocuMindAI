@@ -6,7 +6,7 @@ BACKEND_URL = os.getenv("BACKEND_URL")
 
 st.set_page_config(page_title="PDF Chat AI", layout="wide")
 
-st.title("📄 PDF Chat (Lightweight AI)")
+st.title("DocuMind AI)")
 
 # Upload PDFs
 files = st.file_uploader("Upload PDFs", type="pdf", accept_multiple_files=True)
