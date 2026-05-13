@@ -1,4 +1,4 @@
-# 📄 PDF Chat AI (RAG-based)
+# 📄 DocuMindAI (RAG-based)
 
 🚀 Upload any PDF and ask questions — get intelligent answers using AI.
 
