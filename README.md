@@ -36,7 +36,7 @@
 
 👉 Upload PDF → Ask Question → Get Answer
 
-![Upload](screenshots/demo.png)
+![Upload](screenshot/demo.png)
 
 
 ---
