@@ -53,7 +53,8 @@ docker compose up --build
 
 ## 🌐 Live Demo
 
-👉https://pdf-chat-d2zmesenqswbizmdpberv9.streamlit.app/
+https://c6b8vybce46ayetvqxjgmc.streamlit.app/
+
 
 ---
 
