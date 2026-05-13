@@ -6,19 +6,42 @@ BACKEND_URL = os.getenv("BACKEND_URL")
 
 st.set_page_config(page_title="PDF Chat AI", layout="wide")
 
-st.title("DocuMind AI")
+st.title("📄 DocuMind AI")
+
+# Check backend URL
+if not BACKEND_URL:
+    st.error("BACKEND_URL is not configured")
+    st.stop()
 
 # Upload PDFs
-files = st.file_uploader("Upload PDFs", type="pdf", accept_multiple_files=True)
+files = st.file_uploader(
+    "Upload PDFs",
+    type="pdf",
+    accept_multiple_files=True
+)
 
 if st.button("Process PDFs") and files:
-    files_data = [("files", (f.name, f, "application/pdf")) for f in files]
+
+    files_data = [
+        ("files", (f.name, f, "application/pdf"))
+        for f in files
+    ]
 
     try:
-        res = requests.post(f"{BACKEND_URL}/upload", files=files_data)
-        st.success(res.json()["message"])
-    except:
-        st.error("Backend not reachable")
+        with st.spinner("Processing PDFs..."):
+
+            res = requests.post(
+                f"{BACKEND_URL}/upload",
+                files=files_data,
+                timeout=120
+            )
+
+            data = res.json()
+
+            st.success(data["message"])
+
+    except Exception as e:
+        st.error(f"Backend upload error: {e}")
 
 # Chat memory
 if "chat" not in st.session_state:
@@ -27,21 +50,29 @@ if "chat" not in st.session_state:
 query = st.text_input("Ask a question")
 
 if query:
+
     try:
-        res = requests.get(f"{BACKEND_URL}/ask", params={"query": query})
-        data = res.json()
+        with st.spinner("Generating answer..."):
 
-        st.session_state.chat.append(("You", query))
-        st.session_state.chat.append(("AI", data["answer"]))
+            res = requests.get(
+                f"{BACKEND_URL}/ask",
+                params={"query": query},
+                timeout=60
+            )
 
-        st.subheader("💡 Answer")
-        st.write(data["answer"])
+            data = res.json()
 
+            st.session_state.chat.append(("You", query))
+            st.session_state.chat.append(("AI", data["answer"]))
 
-    except:
-        st.error("Backend is not running!")
+            st.subheader("💡 Answer")
+            st.write(data["answer"])
+
+    except Exception as e:
+        st.error(f"Backend error: {e}")
 
 # Sidebar history
 st.sidebar.title("Chat History")
+
 for role, msg in st.session_state.chat:
     st.sidebar.write(f"**{role}:** {msg}")
