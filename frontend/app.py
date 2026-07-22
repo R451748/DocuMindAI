@@ -33,7 +33,7 @@ if st.button("Process PDFs") and files:
             res = requests.post(
                 f"{BACKEND_URL}/upload",
                 files=files_data,
-                timeout=120
+                timeout=None
             )
 
             data = res.json()
